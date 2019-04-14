@@ -7,11 +7,11 @@ typedef struct BinaryTree {
 	BinaryTree* rchild;
 }*BTree;
 
-//----µİ¹éËã·¨----
+//----é€’å½’ç®—æ³•----
 void visit(BTree t) {
 	cout << t->data;
 }
-void preOrder(BTree t) {				//Ç°Ğò±éÀú
+void preOrder(BTree t) {				//å‰åºéå†
 	if (t != NULL) {
 		visit(t);
 		preOrder(t->lchild);
@@ -19,7 +19,7 @@ void preOrder(BTree t) {				//Ç°Ğò±éÀú
 	}
 }
 
-void inOrder(BTree t) {					//ÖĞĞò±éÀú
+void inOrder(BTree t) {					//ä¸­åºéå†
 	if (t != NULL) {
 		inOrder(t->lchild);
 		visit(t);
@@ -27,33 +27,33 @@ void inOrder(BTree t) {					//ÖĞĞò±éÀú
 	}
 }
 		
-void pastOrder(BTree t) {				//ºóĞò±éÀú
+void pastOrder(BTree t) {				//ååºéå†
 	if (t != NULL) {
 		pastOrder(t->lchild);
 		pastOrder(t->rchild);
 		visit(t);
 	}
 }
-//·Çµİ¹éËã·¨
+//éé€’å½’ç®—æ³•
 typedef struct TNode {
 	BTree tree;
 	TNode* nextT;
 }*T;
-class TreeStark {
+class TreeStack {
 
 private:
 	T top;
 	int size;
 
 public:
-	TreeStark() {
+	TreeStack() {
 		top = NULL;
 		size = 0;
 	}
-	~TreeStark() {
+	~TreeStack() {
 		delete top;
 	}
-	//ÈëÕ»²Ù×÷
+	//å…¥æ ˆæ“ä½œ
 	void push(BTree t) {
 		T in = new TNode;
 		in->tree = t;
@@ -61,7 +61,7 @@ public:
 		top = in;
 		size++;
 	}
-	//³öÕ»²Ù×÷
+	//å‡ºæ ˆæ“ä½œ
 	void pop() {
 		if (top) {
 			T out = top;
@@ -69,7 +69,7 @@ public:
 			delete out;
 			size--;
 		}
-		else cout << "Õ»Îª¿Õ";
+		else cout << "æ ˆä¸ºç©º";
 	}
 
 	bool empty() {
@@ -91,8 +91,8 @@ public:
 	}
 };
 
-void preOrderS(BTree root) {							//Ç°Ğò±éÀú
-	TreeStark s;
+void preOrderS(BTree root) {							//å‰åºéå†
+	TreeStack s;
 	BTree t = root;
 	s.push(t);
 	s.visitTop();
@@ -114,8 +114,8 @@ void preOrderS(BTree root) {							//Ç°Ğò±éÀú
 	}
 }
 
-void inOrderS(BTree root) {								//ÖĞĞò±éÀú
-	TreeStark s;
+void inOrderS(BTree root) {								//ä¸­åºéå†
+	TreeStack s;
 	BTree t = root;
 	s.push(t);
 	while (!s.empty()) {
@@ -151,9 +151,9 @@ void createTree(BTree& root) {
 }
 
 int main() {
-	//Éú³ÉÊ÷
+	//ç”Ÿæˆæ ‘
 	BTree root = new BinaryTree;
-	cout << "ÊäÈëÊ÷£º";
+	cout << "è¾“å…¥æ ‘ï¼š";
 	createTree(root);
 	/*root->data = '-';
 	BTree t1 = new BinaryTree; t1->data = '+';
@@ -179,26 +179,26 @@ int main() {
 	t0->lchild = NULL; t0->rchild = NULL;*/
 
 
-	//-----µİ¹éËã·¨-----
-	//Ç°Ğò±éÀú
-	cout << "µİ¹éÏÈĞò±éÀú:";
+	//-----é€’å½’ç®—æ³•-----
+	//å‰åºéå†
+	cout << "é€’å½’å…ˆåºéå†:";
 	preOrder(root);
 	cout << endl;
-	//ÖĞĞò±éÀú
-	cout << "µİ¹éÖĞĞò±éÀú:";
+	//ä¸­åºéå†
+	cout << "é€’å½’ä¸­åºéå†:";
 	inOrder(root);
 	cout << endl;
-	//ºóĞò±éÀú
-	cout << "µİ¹éºóĞò±éÀú:";
+	//ååºéå†
+	cout << "é€’å½’ååºéå†:";
 	pastOrder(root);
 	cout << endl;
-	//-----·Çµİ¹éËã·¨-----
-	//Ç°Ğò±éÀú
-	cout << "·Çµİ¹éÏÈĞò±éÀú:";
+	//-----éé€’å½’ç®—æ³•-----
+	//å‰åºéå†
+	cout << "éé€’å½’å…ˆåºéå†:";
 	preOrderS(root);
 	cout << endl;
-	//ÖĞĞò±éÀú
-	cout << "·Çµİ¹éÖĞĞò±éÀú:";
+	//ä¸­åºéå†
+	cout << "éé€’å½’ä¸­åºéå†:";
 	inOrderS(root);
 	cout << endl;
 
